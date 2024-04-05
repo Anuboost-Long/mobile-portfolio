@@ -1,0 +1,15 @@
+export const Color = {
+  WHITE: "#ffffff",
+  BLACK: "#000000",
+  BACKDROP: "rgba(0,0,0,0.3)",
+  LIGHTTEXT: "#7F7F7F",
+  RED: "#E21B1B",
+  LIGHTGRAY: "#D0D0D0",
+  EXTRALIGHT: "#F5F5F5",
+  GRAY: "#9E9E9E",
+  ACCENT_RED: "#FCDED4",
+  ACCENT_GREEN: "#CCECDA",
+  GREEN: "#03A348",
+  INACTIVE: "#C4C4C4",
+  DIVIDER: "#E5E5E5",
+} as const;
