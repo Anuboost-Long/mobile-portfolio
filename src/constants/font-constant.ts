@@ -4,4 +4,5 @@ export const FontConstant = {
   SEMIBOLD: "Nunito-SemiBold",
   BOLD: "Nunito-Bold",
   BLACK: "Nunito-Black",
+  STYLE: "Knewave-Regular",
 } as const;

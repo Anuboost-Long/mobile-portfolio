@@ -5,13 +5,13 @@ import React from "react";
 import { Color } from "@/constants/color-constant";
 import { ScreenConstant } from "@/constants/screen-constant";
 import SplashScreen from "@/screen/splash-screen/splash-screen";
-import { Stack } from "@/utils/navigation";
+import { navigationRef, Stack } from "@/utils/navigation";
 
 import MainNavigation from "./main-navigation/main-navigation";
 
 export default function RootNavigation() {
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
         screenOptions={{
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
@@ -20,17 +20,19 @@ export default function RootNavigation() {
             close: { config: { duration: 200 }, animation: "timing" },
           },
           cardStyle: {
-            backgroundColor: Color.WHITE,
+            flex: 1,
+            backgroundColor: Color.BLACK,
           },
-          headerShown: false,
         }}
         initialRouteName={ScreenConstant.Root.SplashScreen}
       >
         <Stack.Screen
+          options={{ headerShown: false }}
           component={SplashScreen}
           name={ScreenConstant.Root.SplashScreen}
         />
         <Stack.Screen
+          options={{ headerShown: false }}
           component={MainNavigation}
           name={ScreenConstant.Root.MainNavigation}
         />

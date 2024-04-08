@@ -5,5 +5,14 @@ export const ScreenConstant = {
   },
   MainNavigation: {
     HomeScreen: "HomeScreen",
+    ContactMeScreen: "ContactMeScreen",
+    AboutMeScreen: "AboutMeScreen",
+    WorkExperienceScreen: "WorkExperienceScreen",
+    EducationBackGroundScreen: "EducationBackGroundScreen",
+    TechStackScreen: "TechStackScreen",
+    CustomComponentGalleryNavigation: "CustomComponentGalleryNavigation",
+  },
+  CustomComponentGalleryNavigation: {
+    CustomComponentGalleryHomeScreen: "CustomComponentGalleryHomeScreen",
   },
 } as const;

@@ -11,11 +11,12 @@ export default function App() {
     "Nunito-SemiBold": require("./assets/fonts/Nunito-SemiBold.ttf"),
     "Nunito-Bold": require("./assets/fonts/Nunito-Bold.ttf"),
     "Nunito-Black": require("./assets/fonts/Nunito-Black.ttf"),
+    "Knewave-Regular": require("./assets/fonts/Knewave-Regular.ttf"),
   });
   return (
     fontsLoaded && (
       <>
-        <StatusBar style="auto" />
+        <StatusBar style="light" />
         <RootNavigation />
       </>
     )

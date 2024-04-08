@@ -1,13 +1,19 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import SplashAnimation from "@/animation/splash-animation/splash-animation";
 import { Color } from "@/constants/color-constant";
+import { ScreenConstant } from "@/constants/screen-constant";
+import { navigationOperation } from "@/utils/navigation";
 
 export default function SplashScreen() {
+  const onAnimationEnded = () => {
+    navigationOperation.replace({ screen: ScreenConstant.Root.MainNavigation });
+  };
+
   return (
     <View style={styles.container}>
-      <SplashAnimation />
+      <SplashAnimation onAnimationEnd={onAnimationEnded} />
     </View>
   );
 }
