@@ -1,11 +1,14 @@
-import React from "react";
-import { View } from "react-native";
+import React from "react"
+import { View } from "react-native"
 
 interface SizedBoxProp {
-  width?: number;
-  height?: number;
+  width?: number
+  height?: number
 }
 
-export default function SizedBox({ width = 0, height = 0 }: SizedBoxProp) {
-  return <View style={{ width, height }} />;
+export default function SizedBox({
+  width = 0,
+  height = 0
+}: Readonly<SizedBoxProp>) {
+  return <View style={{ width, height }} />
 }

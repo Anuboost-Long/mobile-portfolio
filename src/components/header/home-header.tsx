@@ -1,5 +1,5 @@
-import { List } from "phosphor-react-native";
-import React from "react";
+import { List } from "phosphor-react-native"
+import React from "react"
 import {
   Image,
   Platform,
@@ -7,22 +7,22 @@ import {
   StatusBar,
   StyleSheet,
   TouchableOpacity,
-  View,
-} from "react-native";
-import { moderateScale } from "react-native-size-matters";
+  View
+} from "react-native"
+import { moderateScale } from "react-native-size-matters"
 
-import { ImageAsset } from "@/assets/image-asset";
-import { Color } from "@/constants/color-constant";
-import { Dimension } from "@/constants/dimension";
-import { navigationOperation } from "@/utils/navigation";
+import { ImageAsset } from "@/assets/image-asset"
+import { Color } from "@/constants/color-constant"
+import { Dimension } from "@/constants/dimension"
+import { navigationOperation } from "@/utils/navigation"
 
-import SizedBox from "../common/sizedbox";
-import Logo from "../logo/Logo";
+import SizedBox from "../common/sizedbox"
+import Logo from "../logo/Logo"
 
 export default function HomeHeader() {
   const openDrawer = () => {
-    navigationOperation.openDrawer();
-  };
+    navigationOperation.openDrawer()
+  }
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.innerContainer}>
@@ -39,13 +39,13 @@ export default function HomeHeader() {
       </View>
       <SizedBox height={moderateScale(10)} />
     </SafeAreaView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Color.BACKDROP,
-    position: "absolute",
+    position: "absolute"
   },
   innerContainer: {
     backgroundColor: Color.BLACK,
@@ -56,12 +56,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: moderateScale(20),
     height: moderateScale(50),
     ...Platform.select({
-      android: { paddingTop: StatusBar.currentHeight },
-    }),
+      android: { paddingTop: StatusBar.currentHeight }
+    })
   },
   profile: {
     width: moderateScale(30),
     height: moderateScale(30),
-    borderRadius: moderateScale(20),
-  },
-});
+    borderRadius: moderateScale(20)
+  }
+})

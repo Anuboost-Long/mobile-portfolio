@@ -1,28 +1,28 @@
-import React from "react";
+import React from "react"
 import {
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
   ScrollView,
   StatusBar,
-  StyleSheet,
-} from "react-native";
+  StyleSheet
+} from "react-native"
 
-import { Color } from "@/constants/color-constant";
+import { Color } from "@/constants/color-constant"
 
-import SizedBox from "./sizedbox";
+import SizedBox from "./sizedbox"
 
 interface ContainerProp {
-  children: JSX.Element[] | JSX.Element;
-  backgroundColor?: string;
-  additionalHeight?: number;
+  children: JSX.Element[] | JSX.Element
+  backgroundColor?: string
+  additionalHeight?: number
 }
 
 export default function Container({
   children,
   backgroundColor = Color.WHITE,
-  additionalHeight = 0,
-}: ContainerProp) {
+  additionalHeight = 0
+}: Readonly<ContainerProp>) {
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: backgroundColor }]}
@@ -31,7 +31,7 @@ export default function Container({
         style={styles.flex}
         behavior={Platform.select({
           android: "height",
-          ios: "padding",
+          ios: "padding"
         })}
       >
         <ScrollView
@@ -44,7 +44,7 @@ export default function Container({
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
-  );
+  )
 }
 const styles = StyleSheet.create({
   container: {
@@ -52,12 +52,12 @@ const styles = StyleSheet.create({
     flex: 1,
     ...Platform.select({
       android: {
-        paddingTop: StatusBar.currentHeight,
-      },
-    }),
+        paddingTop: StatusBar.currentHeight
+      }
+    })
   },
   flex: {
-    flex: 1,
+    flex: 1
   },
-  flexGrow: { flexGrow: 1 },
-});
+  flexGrow: { flexGrow: 1 }
+})
