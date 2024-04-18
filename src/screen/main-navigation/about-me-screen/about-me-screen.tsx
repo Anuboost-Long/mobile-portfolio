@@ -132,17 +132,41 @@ export default function AboutMeScreen() {
         enhance my physical fitness as much as possible, since I always have a
         goal of seeing myself in my peak physical condition. In addtion, I am
         also into e-sport, although I haven't have the time to play any games
-        myself, I like to entertain myself by watching e-sport tournament
-        (valorant to be exact) and speedruns of games just to improve my
-        strategic thinking and appreciate people who when through their way to
-        be the best a what they enjoy. Recently I also pick back up the interest
-        in professional wrestling.
+        myself, I like to entertain myself by watching e-sport tournament{" "}
+        <Text style={styles.emphasis}>(valorant to be exact)</Text> and
+        speedruns of games just to improve my strategic thinking and appreciate
+        people who when through their way to be the best a what they enjoy.
+        Recently I also pick back up the interest in{" "}
+        <Text style={styles.emphasis}>professional wrestling</Text>.
       </Text>
       <SizedBox height={moderateScale(10)} />
       <View style={styles.hobbieHolder}>
         {hobbie.map((item) => renderHobbie(item))}
       </View>
       <SizedBox height={moderateScale(20)} />
+      <Text style={styles.description}>
+        <Text style={[styles.description, styles.leadingTopic]}>
+          Work Ethics:
+        </Text>{" "}
+        I am a type of person who love to hone the skill that I learned to the
+        point that my brain can think up of a solution to the problem instantly
+        using the technology that I am assigned to do. Since I have come a long
+        way with react native and is comfortable enough with the tech, I am
+        picking up other tech stack to improve my coding arsenal{" "}
+        <Text style={styles.emphasis}>(Specifically C# and .NET)</Text> I am
+        taking my journey to the desktop application side and also venture to
+        backend side as well.{`\n`}Also I love challenges of the work, as long
+        as it gives me a new view point in development and improve my skill
+        (soft and hard).{" "}
+        <Text style={styles.emphasis}>
+          I always value those who value my working ethic, my craft and the
+          contribution that I brought to the project, money is secondary
+          although it should worth the work that I gave to you, but you have to
+          respect me as an employee and appreciate my hard work toward your
+          project/company, in order for our collaboration to take steps toward
+          greatness.
+        </Text>
+      </Text>
     </Container>
   );
 }
