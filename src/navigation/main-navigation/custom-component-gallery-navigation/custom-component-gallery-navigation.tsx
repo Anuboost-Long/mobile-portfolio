@@ -1,13 +1,13 @@
-import React from "react";
+import React from "react"
 
-import HomeHeader from "@/components/header/home-header";
-import { Color } from "@/constants/color-constant";
-import { ScreenConstant } from "@/constants/screen-constant";
-import CustomComponentGalleryHomeScreen from "@/screen/main-navigation/custom-component-navigation/custom-component-home-screen";
-import { Stack } from "@/utils/navigation";
+import HomeHeader from "@/components/header/home-header"
+import { Color } from "@/constants/color-constant"
+import { ScreenConstant } from "@/constants/screen-constant"
+import CustomComponentGalleryHomeScreen from "@/screen/main-navigation/custom-component-navigation/custom-component-home-screen"
+import { Stack } from "@/utils/navigation"
 
 export default function CustomComponentGalleryNavigation() {
-  const renderHomeHeader = () => <HomeHeader />;
+  const renderHomeHeader = () => <HomeHeader />
 
   return (
     <Stack.Navigator
@@ -17,9 +17,9 @@ export default function CustomComponentGalleryNavigation() {
       }
       screenOptions={{
         cardStyle: {
-          backgroundColor: Color.BLACK,
+          backgroundColor: Color.BLACK
         },
-        header: renderHomeHeader,
+        header: renderHomeHeader
       }}
     >
       <Stack.Screen
@@ -30,5 +30,5 @@ export default function CustomComponentGalleryNavigation() {
         }
       />
     </Stack.Navigator>
-  );
+  )
 }

@@ -15,4 +15,5 @@ export const Color = {
   GREEN: "#03A348",
   INACTIVE: "#C4C4C4",
   DIVIDER: "#E5E5E5",
-} as const;
+  LINK: "#009dc4"
+} as const

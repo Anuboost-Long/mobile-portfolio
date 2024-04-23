@@ -1,8 +1,17 @@
+import { StyleSheet } from "react-native"
+import { moderateScale } from "react-native-size-matters"
+
 import { Color } from "@/constants/color-constant"
 
 export const globalStyle = {
   paddingHorizontal: (value: number) => {
-    return { paddingHorizontal: value }
+    return { paddingHorizontal: moderateScale(value) }
+  },
+  paddingLeft: (value: number) => {
+    return { paddingLeft: moderateScale(value) }
+  },
+  marginBottom: (value: number) => {
+    return { marginBottom: moderateScale(value) }
   },
   rowView: {
     flexDirection: "row",
@@ -15,3 +24,15 @@ export const globalStyle = {
     position: "absolute"
   }
 }
+
+export const GlobalStyle = StyleSheet.create({
+  rowView: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  innerRow: {
+    flexDirection: "row",
+    alignItems: "center"
+  }
+})
