@@ -7,7 +7,7 @@ import Animated, {
   withTiming
 } from "react-native-reanimated"
 
-import { ANIMATION_DURATION } from "../collapsible/presets/collapsible-presets"
+import { ANIMATION_DURATION } from "../../components/collapsible/presets/collapsible-presets"
 
 interface RotateProp {
   children: ReactNode | ReactNode[]

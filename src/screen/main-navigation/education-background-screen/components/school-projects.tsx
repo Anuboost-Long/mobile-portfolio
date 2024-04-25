@@ -9,7 +9,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { moderateScale } from "react-native-size-matters"
 
 import Collapsible from "@/components/collapsible/collapsible"
-import Rotate from "@/components/common/rotate"
+import Rotate from "@/animation/common/rotate"
 import SizedBox from "@/components/common/sizedbox"
 import { Color } from "@/constants/color-constant"
 import { FontConstant } from "@/constants/font-constant"
