@@ -34,5 +34,14 @@ export const GlobalStyle = StyleSheet.create({
   innerRow: {
     flexDirection: "row",
     alignItems: "center"
+  },
+  rowCenter: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  colCenter: {
+    justifyContent: "center",
+    alignItems: "center"
   }
 })

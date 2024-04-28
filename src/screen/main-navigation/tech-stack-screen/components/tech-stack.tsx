@@ -1,14 +1,18 @@
-import { CaretRight } from "phosphor-react-native"
+import { LinearGradient } from "expo-linear-gradient"
+import { Info } from "phosphor-react-native"
 import React from "react"
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { StyleSheet, Text, View } from "react-native"
 import { moderateScale } from "react-native-size-matters"
 
 import SizedBox from "@/components/common/sizedbox"
 import { Color } from "@/constants/color-constant"
 import { Dimension } from "@/constants/dimension"
 import { FontConstant } from "@/constants/font-constant"
-import { TechStackProp } from "@/constants/main-navigation/tect-stack"
-import { GlobalStyle, globalStyle } from "@/utils/globalstyle"
+import {
+  RatingIcon,
+  TechStackProp
+} from "@/constants/main-navigation/tect-stack"
+import { GlobalStyle } from "@/utils/globalstyle"
 
 export default function TechStack({
   techStack
@@ -16,120 +20,82 @@ export default function TechStack({
   const Icon = techStack.icon
 
   const renderRatings = (item: { label: string; rate: number }) => {
+    const RateIcon = RatingIcon[item.label]
     return (
-      <View
-        style={{
-          ...globalStyle.paddingHorizontal(10),
-          marginBottom: moderateScale(5)
-        }}
-        key={item.label}
-      >
-        <View style={GlobalStyle.rowView}>
-          <Text style={styles.labelText}>{item.label}</Text>
-          <Text style={styles.labelText}>{item.rate}/100</Text>
-        </View>
-        <View style={styles.progressBar}>
-          <View
-            style={{
-              ...styles.progress,
-              width: `${item.rate}%`,
-              backgroundColor: techStack.color
-            }}
-          />
-        </View>
+      <View style={styles.ratingContainer} key={item.label}>
+        <RateIcon color={Color.WHITE} size={moderateScale(20)} />
+        <SizedBox height={moderateScale(5)} />
+        <Text style={styles.ratingText}>
+          {item.rate}
+          <Text style={styles.topScore}> /100</Text>
+        </Text>
       </View>
     )
   }
 
   return (
-    <View key={techStack.label} style={styles.techStackItem}>
-      <View
-        style={{
-          ...styles.techHeaderContainer,
-          backgroundColor: techStack.color
-        }}
-      />
-      <View style={{ ...styles.iconContainer, borderColor: techStack.color }}>
-        <Icon height={moderateScale(40)} width={moderateScale(40)} />
+    <LinearGradient
+      key={techStack.label}
+      style={[styles.techStackItem, GlobalStyle.rowView]}
+      start={{ x: 0, y: 0.5 }}
+      end={{ x: 0.9, y: 1 }}
+      colors={techStack.color}
+    >
+      <View style={GlobalStyle.colCenter}>
+        <View style={styles.iconContainer}>
+          <Icon height={moderateScale(40)} width={moderateScale(40)} />
+        </View>
+        <SizedBox height={moderateScale(5)} />
+        <Text style={styles.labelText}>{techStack.label}</Text>
       </View>
-      <SizedBox height={moderateScale(25)} />
-      <Text style={styles.techStackLabel}>{techStack.label}</Text>
-      {techStack.ratings?.map((item) => renderRatings(item))}
-      <SizedBox height={moderateScale(10)} />
-      <TouchableOpacity style={styles.learnContainer}>
-        <Text style={styles.learnMore}>Learn More</Text>
-        <CaretRight size={moderateScale(10)} color={Color.LINK} />
-      </TouchableOpacity>
-    </View>
+      <View style={GlobalStyle.innerRow}>
+        {techStack.ratings?.map((item) => renderRatings(item))}
+      </View>
+      <Info color={Color.WHITE} size={moderateScale(20)} weight="bold" />
+    </LinearGradient>
   )
 }
 
 const styles = StyleSheet.create({
-  techHeaderContainer: {
-    width: "100%",
-    height: moderateScale(90),
-    borderBottomWidth: 2,
-    borderColor: Color.WHITE
-  },
-  techStackText: {
-    fontSize: moderateScale(12),
-    fontFamily: FontConstant.REGULAR,
-    color: Color.BLACK,
-    textAlign: "center"
-  },
-  techStackLabel: {
-    fontSize: moderateScale(16),
-    fontFamily: FontConstant.BOLD,
-    color: Color.BLACK,
-    textAlign: "center"
+  techStackItem: {
+    overflow: "hidden",
+    alignSelf: "center",
+    width: Dimension.ScreenWidth - moderateScale(20),
+    paddingHorizontal: moderateScale(10),
+    height: moderateScale(100),
+    backgroundColor: Color.WHITE,
+    borderColor: Color.WHITE,
+    borderRadius: moderateScale(10),
+    marginBottom: moderateScale(10)
   },
   iconContainer: {
-    top: moderateScale(60),
-    borderWidth: 2,
     backgroundColor: Color.WHITE,
     width: moderateScale(55),
     height: moderateScale(55),
-    borderRadius: moderateScale(30),
+    borderRadius: moderateScale(20),
     justifyContent: "center",
-    alignItems: "center",
-    position: "absolute",
-    alignSelf: "center"
-  },
-  techStackItem: {
-    overflow: "hidden",
-    width: (Dimension.ScreenWidth - moderateScale(30)) / 2,
-    backgroundColor: Color.WHITE,
-    borderWidth: 2,
-    borderColor: Color.WHITE,
-    borderRadius: moderateScale(10),
-    marginRight: moderateScale(10),
-    marginBottom: moderateScale(10)
-  },
-  learnMore: {
-    fontSize: moderateScale(12),
-    fontFamily: FontConstant.REGULAR,
-    color: Color.LINK,
-    textAlign: "center"
-  },
-  learnContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    alignSelf: "flex-end",
-    paddingRight: moderateScale(5),
-    marginBottom: moderateScale(5)
+    alignItems: "center"
   },
   labelText: {
-    color: Color.BLACK,
+    color: Color.WHITE,
     fontFamily: FontConstant.BOLD,
     fontSize: moderateScale(10)
   },
-  progressBar: {
-    backgroundColor: Color.EXTRALIGHT,
-    height: moderateScale(10),
-    borderRadius: moderateScale(10),
-    overflow: "hidden"
+  ratingContainer: {
+    width: moderateScale(55),
+    height: moderateScale(55),
+    marginRight: moderateScale(5),
+    justifyContent: "center",
+    alignItems: "center"
   },
-  progress: {
-    height: "100%"
+  ratingText: {
+    color: Color.WHITE,
+    fontSize: moderateScale(14),
+    fontFamily: FontConstant.BOLD
+  },
+  topScore: {
+    color: Color.WHITE,
+    fontSize: moderateScale(10),
+    fontFamily: FontConstant.BLACK
   }
 })

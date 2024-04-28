@@ -1,38 +1,38 @@
-import moment from "moment";
-import React from "react";
+import moment from "moment"
+import React from "react"
 import {
   Image,
   Linking,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
-} from "react-native";
-import { moderateScale } from "react-native-size-matters";
+  View
+} from "react-native"
+import { moderateScale } from "react-native-size-matters"
 
-import { ImageAsset } from "@/assets/image-asset";
-import Container from "@/components/common/container";
-import SizedBox from "@/components/common/sizedbox";
-import { Color } from "@/constants/color-constant";
-import { Dimension } from "@/constants/dimension";
-import { FontConstant } from "@/constants/font-constant";
-import { ScreenConstant } from "@/constants/screen-constant";
-import useTopicsItem, { HobbieProp } from "@/hooks/useTopicsItem";
-import { navigationOperation, NavigationParam } from "@/utils/navigation";
+import { ImageAsset } from "@/assets/image-asset"
+import Container from "@/components/common/container"
+import SizedBox from "@/components/common/sizedbox"
+import { Color } from "@/constants/color-constant"
+import { Dimension } from "@/constants/dimension"
+import { FontConstant } from "@/constants/font-constant"
+import { ScreenConstant } from "@/constants/screen-constant"
+import useTopicsItem, { HobbieProp } from "@/hooks/useTopicsItem"
+import { navigationOperation, NavigationParam } from "@/utils/navigation"
 
 export default function AboutMeScreen() {
-  const { hobbie } = useTopicsItem();
+  const { hobbie } = useTopicsItem()
 
   const navigate = (navigation: NavigationParam) => {
-    navigationOperation.navigate(navigation);
-  };
+    navigationOperation.navigate(navigation)
+  }
 
   const openLink = (link?: string) => {
-    Linking.openURL(link ?? "");
-  };
+    Linking.openURL(link ?? "")
+  }
 
   const renderHobbie = (item: HobbieProp) => {
-    const Icon = item.icon;
+    const Icon = item.icon
     return (
       <TouchableOpacity
         key={item.id}
@@ -42,16 +42,14 @@ export default function AboutMeScreen() {
         <Icon width={moderateScale(40)} height={moderateScale(40)} />
         <Text style={styles.hobbieText}>{item.label}</Text>
       </TouchableOpacity>
-    );
-  };
+    )
+  }
 
   return (
     <Container
       backgroundColor={Color.BLACK}
       additionalHeight={moderateScale(60)}
     >
-      <Text style={styles.headerText}>About Me</Text>
-      <SizedBox height={moderateScale(10)} />
       <Image source={ImageAsset.Me} style={styles.profileImage} />
       <SizedBox height={moderateScale(10)} />
       <Text style={styles.description}>
@@ -82,7 +80,7 @@ export default function AboutMeScreen() {
       <TouchableOpacity
         onPress={() =>
           navigate({
-            screen: ScreenConstant.MainNavigation.EducationBackGroundScreen,
+            screen: ScreenConstant.MainNavigation.EducationBackGroundScreen
           })
         }
       >
@@ -113,7 +111,7 @@ export default function AboutMeScreen() {
       <TouchableOpacity
         onPress={() =>
           navigate({
-            screen: ScreenConstant.MainNavigation.WorkExperienceScreen,
+            screen: ScreenConstant.MainNavigation.WorkExperienceScreen
           })
         }
       >
@@ -168,7 +166,7 @@ export default function AboutMeScreen() {
         </Text>
       </Text>
     </Container>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -177,13 +175,13 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(26),
     color: Color.WHITE,
     textAlign: "center",
-    textDecorationLine: "underline",
+    textDecorationLine: "underline"
   },
   profileImage: {
     alignSelf: "center",
     width: moderateScale(200),
     height: moderateScale(200),
-    borderRadius: moderateScale(10),
+    borderRadius: moderateScale(10)
   },
   description: {
     fontFamily: FontConstant.MEDIUM,
@@ -191,24 +189,24 @@ const styles = StyleSheet.create({
     color: Color.WHITE,
     textAlign: "justify",
     alignSelf: "center",
-    width: "90%",
+    width: "90%"
   },
   leadingTopic: {
     fontFamily: FontConstant.BLACK,
-    fontSize: moderateScale(16),
+    fontSize: moderateScale(16)
   },
 
   emphasis: {
-    fontFamily: FontConstant.BLACK,
+    fontFamily: FontConstant.BLACK
   },
   smallDescription: {
     textAlign: "center",
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(12)
   },
   hobbieHolder: {
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center"
   },
   hobbieItem: {
     width: (Dimension.ScreenWidth - moderateScale(70)) / 4,
@@ -217,13 +215,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginHorizontal: moderateScale(5),
     borderRadius: moderateScale(10),
-    backgroundColor: Color.CHARCOAL,
+    backgroundColor: Color.CHARCOAL
   },
   hobbieText: {
     fontFamily: FontConstant.BOLD,
     fontSize: moderateScale(12),
     color: Color.BLACK,
     textAlign: "center",
-    alignSelf: "center",
-  },
-});
+    alignSelf: "center"
+  }
+})

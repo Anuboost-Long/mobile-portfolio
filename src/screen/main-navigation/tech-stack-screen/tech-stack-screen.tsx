@@ -5,27 +5,24 @@ import { moderateScale } from "react-native-size-matters"
 import Container from "@/components/common/container"
 import SizedBox from "@/components/common/sizedbox"
 import { Color } from "@/constants/color-constant"
-import { Dimension } from "@/constants/dimension"
 import { FontConstant } from "@/constants/font-constant"
 import {
   TechStackCollectionProp,
   techStackItem,
   TechStackProp
 } from "@/constants/main-navigation/tect-stack"
-import { globalStyle } from "@/utils/globalstyle"
 
 import TechStack from "./components/tech-stack"
 
 export default function TechStackScreen() {
   const renderStackCollection = (item: TechStackCollectionProp) => {
     return (
-      <View key={item.label} style={globalStyle.paddingHorizontal(10)}>
-        <Text style={styles.techHeader}> {item.label}</Text>
-        <SizedBox height={moderateScale(10)} />
-        <View style={styles.techStackContainer}>
-          {item.data.map((techStack) => renderTechStack(techStack))}
+      <View key={item.label}>
+        <View style={styles.sectionContainer}>
+          <Text style={styles.techHeader}> {item.label}</Text>
         </View>
         <SizedBox height={moderateScale(10)} />
+        {item.data.map((techStack) => renderTechStack(techStack))}
       </View>
     )
   }
@@ -46,30 +43,16 @@ export default function TechStackScreen() {
 }
 
 const styles = StyleSheet.create({
-  headerText: {
-    fontFamily: FontConstant.STYLE,
-    fontSize: moderateScale(26),
-    color: Color.WHITE,
-    textAlign: "center",
-    textDecorationLine: "underline"
-  },
-  backdrop: {
-    backgroundColor: Color.BACKDROP,
-    position: "absolute",
-    width: "100%",
-    height: "100%"
-  },
-
   techHeader: {
     fontFamily: FontConstant.STYLE,
     textAlign: "center",
     fontSize: moderateScale(18),
     color: Color.WHITE
   },
-  techStackContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    flexWrap: "wrap",
-    width: Dimension.ScreenWidth
+  sectionContainer: {
+    width: "100%",
+    backgroundColor: Color.CHARCOAL,
+    paddingVertical: moderateScale(5),
+    paddingHorizontal: moderateScale(10)
   }
 })

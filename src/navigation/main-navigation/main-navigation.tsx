@@ -2,6 +2,7 @@ import React from "react"
 
 import DrawerContent from "@/components/drawer/drawer-content"
 import HomeHeader from "@/components/header/home-header"
+import NavigationHeader from "@/components/header/navigation-header"
 import { Color } from "@/constants/color-constant"
 import { ScreenConstant } from "@/constants/screen-constant"
 import AboutMeScreen from "@/screen/main-navigation/about-me-screen/about-me-screen"
@@ -16,6 +17,10 @@ import CustomComponentGalleryNavigation from "./custom-component-gallery-navigat
 
 export default function MainNavigation() {
   const renderHomeHeader = () => <HomeHeader />
+  const renderHeader = (props: any) => {
+    const name = props.options.title
+    return <NavigationHeader name={name} />
+  }
 
   const renderDrawerContent = (props: any) => <DrawerContent {...props} />
 
@@ -23,6 +28,9 @@ export default function MainNavigation() {
     <Drawer.Navigator
       drawerContent={renderDrawerContent}
       initialRouteName={ScreenConstant.MainNavigation.HomeScreen}
+      screenOptions={{
+        header: renderHeader
+      }}
     >
       <Drawer.Screen
         options={{
@@ -37,7 +45,7 @@ export default function MainNavigation() {
 
       <Drawer.Screen
         options={{
-          header: renderHomeHeader,
+          title: "About me",
           sceneContainerStyle: {
             backgroundColor: Color.BLACK
           }
@@ -47,7 +55,7 @@ export default function MainNavigation() {
       />
       <Drawer.Screen
         options={{
-          header: renderHomeHeader,
+          title: "Education background",
           sceneContainerStyle: {
             backgroundColor: Color.BLACK
           }
@@ -57,7 +65,7 @@ export default function MainNavigation() {
       />
       <Drawer.Screen
         options={{
-          header: renderHomeHeader,
+          title: "Teachstack",
           sceneContainerStyle: {
             backgroundColor: Color.BLACK
           }
@@ -67,7 +75,7 @@ export default function MainNavigation() {
       />
       <Drawer.Screen
         options={{
-          header: renderHomeHeader,
+          title: "Work experience",
           sceneContainerStyle: {
             backgroundColor: Color.BLACK
           }
@@ -77,6 +85,7 @@ export default function MainNavigation() {
       />
       <Drawer.Screen
         options={{
+          title: "Custom components",
           headerShown: false,
           sceneContainerStyle: {
             backgroundColor: Color.BLACK
@@ -87,7 +96,7 @@ export default function MainNavigation() {
       />
       <Drawer.Screen
         options={{
-          header: renderHomeHeader,
+          title: "Contact me",
           sceneContainerStyle: {
             backgroundColor: Color.BLACK
           }
