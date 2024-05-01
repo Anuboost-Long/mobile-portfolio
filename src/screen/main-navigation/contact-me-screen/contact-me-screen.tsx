@@ -77,7 +77,14 @@ export default function ContactMeScreen() {
             />
           </TouchableOpacity>
           <SizedBox width={moderateScale(10)} />
-          <TouchableOpacity style={styles.socialContainer}>
+          <TouchableOpacity
+            style={styles.socialContainer}
+            onPress={() =>
+              openLink(
+                "https://www.instagram.com/anuboostrn_?igsh=NWhiaHI4NnU5ejBk&utm_source=qr"
+              )
+            }
+          >
             <InstagramLogo
               color={Color.BLACK}
               size={moderateScale(25)}

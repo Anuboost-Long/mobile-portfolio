@@ -43,5 +43,9 @@ export const GlobalStyle = StyleSheet.create({
   colCenter: {
     justifyContent: "center",
     alignItems: "center"
+  },
+  wrapRow: {
+    flexDirection: "row",
+    flexWrap: "wrap"
   }
 })

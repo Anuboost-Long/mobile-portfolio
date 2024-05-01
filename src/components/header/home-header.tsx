@@ -54,9 +54,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: Dimension.ScreenWidth,
     paddingHorizontal: moderateScale(20),
-    height: moderateScale(50),
+    paddingBottom: moderateScale(10),
     ...Platform.select({
-      android: { paddingTop: StatusBar.currentHeight }
+      android: { paddingTop: StatusBar?.currentHeight ?? 100 + 10 }
     })
   },
   profile: {

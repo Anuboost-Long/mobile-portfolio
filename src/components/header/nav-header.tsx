@@ -1,4 +1,4 @@
-import { List } from "phosphor-react-native"
+import { CaretLeft } from "phosphor-react-native"
 import React from "react"
 import {
   Platform,
@@ -18,11 +18,9 @@ import { navigationOperation } from "@/utils/navigation"
 
 import SizedBox from "../common/sizedbox"
 
-export default function NavigationHeader({
-  name = ""
-}: Readonly<{ name?: string }>) {
+export default function NavHeader({ name = "" }: Readonly<{ name?: string }>) {
   const openDrawer = () => {
-    navigationOperation.openDrawer()
+    navigationOperation.goBack()
   }
   return (
     <SafeAreaView style={styles.container}>
@@ -31,7 +29,7 @@ export default function NavigationHeader({
           style={{ width: moderateScale(30) }}
           onPress={openDrawer}
         >
-          <List color={Color.WHITE} size={moderateScale(25)} />
+          <CaretLeft size={moderateScale(20)} color={Color.WHITE} />
         </TouchableOpacity>
         <Text style={styles.headerText}>{name}</Text>
         <SizedBox width={moderateScale(30)} />
@@ -53,7 +51,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: Dimension.ScreenWidth,
     paddingHorizontal: moderateScale(20),
-    paddingBottom: moderateScale(10),
+    paddingBottom: moderateScale(20),
     ...Platform.select({
       android: { paddingTop: StatusBar.currentHeight }
     })

@@ -1,7 +1,7 @@
 export const ScreenConstant = {
   Root: {
     SplashScreen: "SplashScreen",
-    MainNavigation: "MainNavigation",
+    MainNavigation: "MainNavigation"
   },
   MainNavigation: {
     HomeScreen: "HomeScreen",
@@ -10,9 +10,12 @@ export const ScreenConstant = {
     WorkExperienceScreen: "WorkExperienceScreen",
     EducationBackGroundScreen: "EducationBackGroundScreen",
     TechStackScreen: "TechStackScreen",
-    CustomComponentGalleryNavigation: "CustomComponentGalleryNavigation",
+    CustomComponentGalleryNavigation: "CustomComponentGalleryNavigation"
   },
   CustomComponentGalleryNavigation: {
     CustomComponentGalleryHomeScreen: "CustomComponentGalleryHomeScreen",
-  },
-} as const;
+    AnimationsScreen: "AnimationsScreen",
+    ReusableComponentsScreen: "ReusableComponentsScreen",
+    ProjectSnapShotsScreen: "ProjectSnapShotsScreen"
+  }
+} as const

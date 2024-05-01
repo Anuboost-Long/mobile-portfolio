@@ -21,22 +21,22 @@ interface AnimationProp {
   item: number
 }
 
-export default function DotElastic({
+export default function DotRising({
   duration = 1000,
   style = {},
   item
 }: Readonly<AnimationProp>) {
-  const scaleY = useSharedValue(1)
+  const translateY = useSharedValue(0)
   const animate = () => {
-    scaleY.value = withRepeat(
+    translateY.value = withRepeat(
       withDelay(
         (duration / 2) * DOTS.length,
         withSequence(
-          withTiming(1.5, {
+          withTiming(-10, {
             duration: duration,
             easing: Easing.inOut(Easing.ease)
           }),
-          withTiming(1, {
+          withTiming(0, {
             duration: duration,
             easing: Easing.inOut(Easing.ease)
           })
@@ -47,15 +47,15 @@ export default function DotElastic({
   }
 
   const animateIndex1 = () => {
-    scaleY.value = withDelay(
+    translateY.value = withDelay(
       duration * item,
       withSequence(
-        withTiming(1.5, {
+        withTiming(-10, {
           duration: duration,
           easing: Easing.inOut(Easing.ease)
         }),
         withTiming(
-          1,
+          0,
           { duration: duration, easing: Easing.inOut(Easing.ease) },
           () => {
             runOnJS(animate)()
@@ -71,7 +71,7 @@ export default function DotElastic({
 
   return (
     <Animated.View
-      style={[styles.dot, style, { transform: [{ scaleY: scaleY }] }]}
+      style={[styles.dot, style, { transform: [{ translateY: translateY }] }]}
     />
   )
 }

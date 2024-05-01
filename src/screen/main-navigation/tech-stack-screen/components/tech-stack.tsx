@@ -1,7 +1,7 @@
 import { LinearGradient } from "expo-linear-gradient"
 import { Info } from "phosphor-react-native"
 import React from "react"
-import { StyleSheet, Text, View } from "react-native"
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { moderateScale } from "react-native-size-matters"
 
 import SizedBox from "@/components/common/sizedbox"
@@ -51,7 +51,9 @@ export default function TechStack({
       <View style={GlobalStyle.innerRow}>
         {techStack.ratings?.map((item) => renderRatings(item))}
       </View>
-      <Info color={Color.WHITE} size={moderateScale(20)} weight="bold" />
+      <TouchableOpacity onPress={(e) => console.log(e.nativeEvent)}>
+        <Info color={Color.WHITE} size={moderateScale(20)} weight="bold" />
+      </TouchableOpacity>
     </LinearGradient>
   )
 }
