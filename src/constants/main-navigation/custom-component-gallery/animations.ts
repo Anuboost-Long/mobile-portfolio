@@ -1,3 +1,7 @@
+import ColorChanger from "@/animation/color-changer/color-changer"
+import ArchProgressBar from "@/animation/loading/circle/arch-progressbar"
+import CircleLoading from "@/animation/loading/circle/circle-loading"
+import CircleProgressBar from "@/animation/loading/circle/circle-progressbar"
 import { DOT_TYPE } from "@/animation/loading/dot/constant/dot-animation"
 import DotLoading from "@/animation/loading/dot/dot-loading"
 
@@ -43,6 +47,36 @@ export const Animations: AnimationsProp[] = [
       {
         label: "Stretching Dots",
         component: DotLoading,
+        type: DOT_TYPE.dot_stretching
+      },
+      {
+        label: "Dot Carousel",
+        component: DotLoading,
+        type: DOT_TYPE.dot_carousel
+      },
+      {
+        label: "Circle Loading",
+        component: CircleLoading,
+        type: DOT_TYPE.dot_carousel
+      }
+    ]
+  },
+  {
+    label: "Other Animation",
+    data: [
+      {
+        label: "Color Changing",
+        component: ColorChanger,
+        type: DOT_TYPE.dot_stretching
+      },
+      {
+        label: "Circle Progress Bar",
+        component: CircleProgressBar,
+        type: DOT_TYPE.dot_stretching
+      },
+      {
+        label: "Half Progress Bar",
+        component: ArchProgressBar,
         type: DOT_TYPE.dot_stretching
       }
     ]

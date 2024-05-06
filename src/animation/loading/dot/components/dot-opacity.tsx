@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { StyleProp, StyleSheet, ViewProps } from "react-native"
 import Animated, {
+  cancelAnimation,
   Easing,
   runOnJS,
   useSharedValue,
@@ -19,13 +20,15 @@ interface AnimationProp {
   duration?: number
   style?: StyleProp<ViewProps>
   item: number
+  stop: boolean
 }
 
 export default function DotOpacity({
   duration = 1000,
   style = {},
-  item
-}: AnimationProp) {
+  item,
+  stop = false
+}: Readonly<AnimationProp>) {
   const opacity = useSharedValue(0)
   const animate = () => {
     opacity.value = withRepeat(
@@ -66,7 +69,11 @@ export default function DotOpacity({
   }
 
   useEffect(() => {
-    animateIndex1()
+    if (stop) {
+      cancelAnimation(opacity)
+    } else {
+      animateIndex1()
+    }
   })
 
   return <Animated.View style={[styles.dot, style, { opacity: opacity }]} />

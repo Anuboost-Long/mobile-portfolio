@@ -73,7 +73,8 @@ const styles = StyleSheet.create({
     borderColor: Color.WHITE,
     alignSelf: "center",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    overflow: "hidden"
   },
   headerContainer: {
     width: Dimension.ScreenWidth,
@@ -95,7 +96,8 @@ const styles = StyleSheet.create({
     marginLeft: moderateScale(10),
     marginBottom: moderateScale(10),
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    overflow: "hidden"
   },
   labelText: {
     fontSize: moderateScale(10),

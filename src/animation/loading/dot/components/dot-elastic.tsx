@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { StyleProp, StyleSheet, ViewProps } from "react-native"
 import Animated, {
+  cancelAnimation,
   Easing,
   runOnJS,
   useSharedValue,
@@ -19,12 +20,14 @@ interface AnimationProp {
   duration?: number
   style?: StyleProp<ViewProps>
   item: number
+  stop: boolean
 }
 
 export default function DotElastic({
   duration = 1000,
   style = {},
-  item
+  item,
+  stop = false
 }: Readonly<AnimationProp>) {
   const scaleY = useSharedValue(1)
   const animate = () => {
@@ -66,7 +69,11 @@ export default function DotElastic({
   }
 
   useEffect(() => {
-    animateIndex1()
+    if (stop) {
+      cancelAnimation(scaleY)
+    } else {
+      animateIndex1()
+    }
   })
 
   return (

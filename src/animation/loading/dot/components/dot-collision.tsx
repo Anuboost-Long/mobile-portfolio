@@ -19,12 +19,14 @@ interface AnimationProp {
   duration?: number
   style?: StyleProp<ViewProps>
   item: number
+  stop: boolean
 }
 
 export default function DotCollision({
   duration = 1000,
   style = {},
-  item
+  item,
+  stop = false
 }: Readonly<AnimationProp>) {
   const translateX = useSharedValue(0)
   const animate = () => {
@@ -67,7 +69,7 @@ export default function DotCollision({
 
   useEffect(() => {
     if (item !== 2) {
-      animateIndex1()
+      !stop && animateIndex1()
     }
   })
 

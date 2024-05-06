@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { StyleProp, StyleSheet, ViewProps } from "react-native"
 import Animated, {
+  cancelAnimation,
   Easing,
   runOnJS,
   useSharedValue,
@@ -19,12 +20,14 @@ interface AnimationProp {
   duration?: number
   style?: StyleProp<ViewProps>
   item: number
+  stop: boolean
 }
 
 export default function DotRising({
   duration = 1000,
   style = {},
-  item
+  item,
+  stop = false
 }: Readonly<AnimationProp>) {
   const translateY = useSharedValue(0)
   const animate = () => {
@@ -66,7 +69,11 @@ export default function DotRising({
   }
 
   useEffect(() => {
-    animateIndex1()
+    if (stop) {
+      cancelAnimation(translateY)
+    } else {
+      animateIndex1()
+    }
   })
 
   return (

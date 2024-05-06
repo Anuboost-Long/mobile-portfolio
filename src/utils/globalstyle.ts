@@ -47,5 +47,8 @@ export const GlobalStyle = StyleSheet.create({
   wrapRow: {
     flexDirection: "row",
     flexWrap: "wrap"
+  },
+  container: {
+    flex: 1
   }
 })

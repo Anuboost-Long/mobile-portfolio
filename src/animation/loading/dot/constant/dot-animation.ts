@@ -8,5 +8,6 @@ export const DOT_TYPE = {
   dot_rising: "DotRising",
   dot_falling: "DotFalling",
   dot_collision: "DotCollision",
-  dot_stretching: "DotStretching"
+  dot_stretching: "DotStretching",
+  dot_carousel: "DotCarousel"
 }

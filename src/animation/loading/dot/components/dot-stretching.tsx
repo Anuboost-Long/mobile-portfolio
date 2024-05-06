@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { StyleProp, StyleSheet, ViewProps } from "react-native"
 import Animated, {
+  cancelAnimation,
   Easing,
   interpolate,
   useAnimatedStyle,
@@ -17,12 +18,14 @@ interface AnimationProp {
   duration?: number
   style?: StyleProp<ViewProps>
   item: number
+  stop: boolean
 }
 
 export default function DotStretching({
   duration = 1000,
   style = {},
-  item
+  item,
+  stop = false
 }: Readonly<AnimationProp>) {
   const progress = useSharedValue(0)
 
@@ -70,7 +73,11 @@ export default function DotStretching({
   })
 
   useEffect(() => {
-    animate()
+    if (stop) {
+      cancelAnimation(progress)
+    } else {
+      animate()
+    }
   })
 
   return <Animated.View style={[styles.dot, style, dotStyle]} />
