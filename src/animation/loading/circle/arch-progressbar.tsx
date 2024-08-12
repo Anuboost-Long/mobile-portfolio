@@ -1,6 +1,5 @@
-import { Canvas, Path, Skia } from "@shopify/react-native-skia"
 import React, { useEffect, useState } from "react"
-import { StyleSheet, View } from "react-native"
+import { StyleSheet, Text, View } from "react-native"
 import Animated, {
   cancelAnimation,
   Easing,
@@ -10,56 +9,52 @@ import Animated, {
   withSequence,
   withTiming
 } from "react-native-reanimated"
-import { Circle } from "react-native-svg"
+import { moderateScale } from "react-native-size-matters"
+import { Path, Svg } from "react-native-svg"
 
 import { Color } from "@/constants/color-constant"
+import { FontConstant } from "@/constants/font-constant"
 
-const AnimatedCircle = Animated.createAnimatedComponent(Circle)
+const AnimatePath = Animated.createAnimatedComponent(Path)
 
-export default function ArchProgressBar() {
-  const progress = useSharedValue(0)
+export default function ArchProgressBar({ score = 60 }: { score: number }) {
+  const progress = useSharedValue(1)
   const [dimension, setDimension] = useState({ height: 0, width: 0 })
 
-  const { pi, Cos, Sin } = Math
+  const adjustment = 40
+  const size = dimension.width - adjustment
+  const { PI, cos, sin } = Math
   const strokeWidth = 10
-  const center = dimension.width / 2
-  const r = (dimension.width - strokeWidth) / 2 - 40
-  const startAngle = Math.PI
-  const endAngle = 2 * Math.PI
-  const x1 = center - r * Math.cos(startAngle)
-  const y1 = -r * Math.sin(startAngle) + center
-  const x2 = center - r * Math.cos(endAngle)
-  const y2 = -r * Math.sin(endAngle) + center
-  console.log(x1, y1, x2, y2)
-  const rawPath = `M ${x1} ${y1} A ${r} ${r} 0 1 0 ${x2} ${y2}`
-  const rawForegroundPath = `M ${x2} ${y2} A ${r} ${r} 1 0 1 ${x1} ${y1}`
-  const skiaBackgroundPath = Skia.Path.MakeFromSVGString(rawPath)
-  const skiaForegroundPath = Skia.Path.MakeFromSVGString(rawForegroundPath)
-
-  const LENGTH =
-    dimension.height > dimension.width ? dimension.width : dimension.height
-
-  const RADIUS = LENGTH / (2 * Math.PI)
+  const r = (size - strokeWidth) / 5
+  const cx = size / 2
+  const cy = size / 2
+  const centerY = dimension.height - cy - 10
+  const centerX = adjustment / 2
+  const A = PI
+  const startAngle = PI
+  const endAngle = 2 * PI
+  const startX = cx - r * cos(startAngle)
+  const startY = -r * sin(startAngle) + cy
+  const endX = cx - r * cos(endAngle)
+  const endY = -r * sin(endAngle) + cy
+  const d = `M ${startX} ${startY} A ${r} ${r} 0 1 0 ${endX} ${endY}`
+  const circumfirence = r * A
 
   const animate = () => {
-    progress.value = withRepeat(
-      withSequence(
-        withTiming(1, { duration: 1000, easing: Easing.linear }),
-        withTiming(0, { duration: 0, easing: Easing.linear })
-      ),
-      -1
+    progress.value = withSequence(
+      withTiming(1 - score / 100, { duration: 1000, easing: Easing.linear })
     )
   }
 
   const animateProp = useAnimatedProps(() => {
     return {
-      strokeDashoffset: LENGTH * (1 - progress.value)
+      strokeDashoffset: circumfirence * (1 - progress.value)
     }
   })
 
   useEffect(() => {
     cancelAnimation(progress)
-    // animate()
+    animate()
   })
 
   return (
@@ -73,18 +68,34 @@ export default function ArchProgressBar() {
         })
       }}
     >
-      <Canvas style={styles.container}>
+      <Svg>
         <Path
-          path={skiaBackgroundPath}
+          stroke={Color.WHITE}
+          fill={"none"}
+          d={d}
+          x={centerX}
+          y={centerY}
           strokeWidth={strokeWidth}
-          color={"grey"}
         />
-        <Path
-          path={skiaBackgroundPath}
+        <AnimatePath
+          stroke={Color.CHARCOAL}
+          fill={"none"}
+          d={d}
+          x={centerX}
+          y={centerY}
+          animatedProps={animateProp}
+          strokeDasharray={`${circumfirence},${circumfirence}`}
           strokeWidth={strokeWidth}
-          color={Color.WHITE}
         />
-      </Canvas>
+      </Svg>
+      <Animated.Text
+        style={{
+          ...styles.text,
+          bottom: r / 3
+        }}
+      >
+        {progress.value}
+      </Animated.Text>
     </View>
   )
 }
@@ -94,11 +105,11 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%"
   },
-  innerContainer: {
+  text: {
     position: "absolute",
-    height: "100%",
-    width: "100%",
-    top: 0,
-    left: 0
+    color: Color.WHITE,
+    fontFamily: FontConstant.BLACK,
+    fontSize: moderateScale(15),
+    alignSelf: "center"
   }
 })
